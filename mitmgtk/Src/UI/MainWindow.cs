@@ -35,13 +35,13 @@ public partial class MainWindow : Gtk.Window
 		trayIcon.Tooltip = "Hello World Icon";
 
 
-		Setup dialog = new Setup
+		/*Setup dialog = new Setup
 				();
 		dialog.Modal = true;
 		dialog.AddButton("Close", ResponseType.Close);
 		dialog.Response += new ResponseHandler(on_dialog_response);
 		dialog.Run();
-		dialog.Destroy();
+		dialog.Destroy();*/
 	}
 
 	void on_dialog_response(object obj, ResponseArgs args)

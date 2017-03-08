@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mitmgtk", "mitmgtk\mitmgtk.csproj", "{21680A28-EAA3-4F4D-BE0D-9E12EAFCE6CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mitmgtk", "mitmgtk\mitmgtk.csproj", "{21680A28-EAA3-4F4D-BE0D-9E12EAFCE6CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -148,5 +148,11 @@ Global
 		$24.IncludeStaticEntities = True
 		$0.VersionControlPolicy = $26
 		$26.inheritsSet = Mono
+		$0.TextStylePolicy = $27
+		$27.FileWidth = 120
+		$27.TabsToSpaces = False
+		$27.inheritsSet = VisualStudio
+		$27.inheritsScope = text/plain
+		$27.scope = text/plain
 	EndGlobalSection
 EndGlobal

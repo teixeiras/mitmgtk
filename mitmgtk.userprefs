@@ -1,0 +1,22 @@
+﻿<Properties StartupConfiguration="{21680A28-EAA3-4F4D-BE0D-9E12EAFCE6CB}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="mitmgtk/app.config">
+    <Files>
+      <File FileName="mitmgtk/Src/Persistence/WindowsPersistence.cs" Line="64" Column="5" />
+      <File FileName="mitmgtk/Src/Persistence/BaseClass.cs" Line="7" Column="11" />
+      <File FileName="mitmgtk/Src/Server/Connection.cs" Line="23" Column="80" />
+      <File FileName="mitmgtk/app.config" Line="5" Column="54" />
+      <File FileName="mitmgtk/NLog.config" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Persistence/Settings.cs" Line="117" Column="2" />
+      <File FileName="mitmgtk/Src/Program.cs" Line="8" Column="25" />
+      <File FileName="mitmgtk/Src/UI/MainWindow.cs" Line="44" Column="22" />
+      <File FileName="mitmgtk/packages.config" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.mitmgtk PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

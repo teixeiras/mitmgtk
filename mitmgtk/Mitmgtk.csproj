@@ -74,6 +74,7 @@
     <Reference Include="websocket-sharp">
       <HintPath>..\packages\WebSocketSharpFork.1.0.4.0\lib\net35\websocket-sharp.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -91,13 +92,14 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\Program.cs" />
-    <Compile Include="Src\Persistence\BaseClass.cs" />
     <Compile Include="Src\Persistence\WindowsPersistence.cs" />
     <Compile Include="Src\Server\Daemon.cs" />
     <Compile Include="gtk-gui\Mitmgtk.Setup.cs" />
     <Compile Include="Src\UI\Setup.cs" />
     <Compile Include="Src\UI\MainWindow.cs" />
     <Compile Include="Src\Server\Connection.cs" />
+    <Compile Include="Src\Persistence\BaseClass.cs" />
+    <Compile Include="Src\Persistence\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -108,10 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="app.config" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

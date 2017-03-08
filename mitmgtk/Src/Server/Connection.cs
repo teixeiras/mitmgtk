@@ -1,7 +1,7 @@
 ﻿using System;
 using WebSocketSharp;
 using NLog;
-namespace mitmgtk
+namespace Mitmgtk
 {
 	public class Connection
 	{
@@ -20,7 +20,12 @@ namespace mitmgtk
 		{
 			try
 			{
-				socket = new WebSocket("ws://dragonsnest.far/Laputa");
+				logger.Info("Connecting to: " + Settings.instance().defaultHost + "/updates");
+				socket = new WebSocket(Settings.instance().defaultHost);
+				socket.OnError += (sender, e) =>
+				{
+					logger.Error(e.Message);
+				};
 				socket.OnMessage += (sender, e) =>
 					Console.WriteLine("Laputa says: " + e.Data);
 
@@ -30,7 +35,6 @@ namespace mitmgtk
 			{
 				throw e;
 			}
-
 
 		}
 
@@ -46,11 +50,9 @@ namespace mitmgtk
 			{
 				logger.Error(e.Message);
 				this.Connect();
-				this.send();
+				this.send(message);
 				retries++;
 			}
-			
-			Console.ReadKey(true);
 		}
 
 	}

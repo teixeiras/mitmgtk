@@ -16,9 +16,19 @@ namespace Mitmgtk
 				logger.Error(new System.Diagnostics.StackTrace(true));
 			};
 
+			//Check if log is enabled or not
+			if (!Settings.instance().logEnabled)
+			{
+				LogManager.DisableLogging();
+			}
+
+			Connection connection = new Connection();
+			connection.Connect();
+			connection.send("oia");
+
 			MainWindow win = new MainWindow();
 			win.Show();
-			Daemon daemon = new Daemon();
+			//Daemon daemon = new Daemon();
 			Application.Run();
 		}
 	}
