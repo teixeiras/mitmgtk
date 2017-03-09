@@ -5,6 +5,9 @@ namespace Mitmgtk.UpdatesPackage
 {
 	public class Flows: DataPackage
 	{
+		static JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+
 		public Boolean intercepted { get; set; }
 
 		public String type { get; set; }
@@ -28,7 +31,12 @@ namespace Mitmgtk.UpdatesPackage
 			this.type = type;
 			this.modified = modified;
 			this.marked = marked;
-			this.client_conn = 
+			this.client_conn = (Connection)serializer.Deserialize(client_conn, typeof(Connection));
+			this.server_conn = (Connection)serializer.Deserialize(client_conn, typeof(Connection));
+
+			this.request = (Request)serializer.Deserialize(client_conn, typeof(Request));
+			this.response = (Response)serializer.Deserialize(client_conn, typeof(Response));
+
 		}
 	}
 }

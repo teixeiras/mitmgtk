@@ -56,7 +56,7 @@ namespace Mitmgtk
 				socket.OnMessage += (sender, e) =>
 				{
 					logger.Info("Request arrived in updates tunnel:" + e.Data);
-					var updatesPackage = serializer.Deserialize(e.Data, typeof(Mitmgtk.UpdatesPackage.Package));
+					var package = serializer.Deserialize(e.Data, typeof(Mitmgtk.UpdatesPackage.Package));
 				};
 				socket.Connect();
 

@@ -1,27 +1,18 @@
 ﻿<Properties StartupConfiguration="{21680A28-EAA3-4F4D-BE0D-9E12EAFCE6CB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="mitmgtk/Src/Server/Packages/Flows/Flows.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="mitmgtk/Src/Managers/PackagesManager.cs">
     <Files>
       <File FileName="mitmgtk/gtk-gui/MainWindow.cs" Line="1" Column="1" />
-      <File FileName="mitmgtk/Src/UI/MainWindow.cs" Line="37" Column="1" />
-      <File FileName="mitmgtk/Src/UI/Setup.cs" Line="19" Column="1" />
-      <File FileName="mitmgtk/Src/Server/Connection.cs" Line="56" Column="95" />
-      <File FileName="mitmgtk/Src/Server/Daemon.cs" Line="11" Column="24" />
-      <File FileName="mitmgtk Status" />
-      <File FileName="mitmgtk/Src/Program.cs" Line="27" Column="1" />
-      <File FileName="mitmgtk/Src/Persistence/Settings.cs" Line="1" Column="1" />
-      <File FileName="mitmgtk/Src/Persistence/WindowsPersistence.cs" Line="38" Column="9" />
-      <File FileName="mitmgtk/app.config" Line="5" Column="35" />
-      <File FileName="mitmgtk/Src/Server/Tunnels/UpdateConnection.cs" Line="1" Column="1" />
-      <File FileName="mitmgtk/Src/Server/FechData.cs" Line="26" Column="9" />
-      <File FileName="mitmgtk/Src/Server/CookiesManager.cs" Line="16" Column="7" />
-      <File FileName="mitmgtk/Src/Server/Packages/DataPackage.cs" Line="6" Column="19" />
-      <File FileName="mitmgtk/Src/Server/Packages/Flows.cs" Line="5" Column="1" />
-      <File FileName="mitmgtk/Src/Server/Packages/Events.cs" Line="6" Column="9" />
-      <File FileName="mitmgtk/Src/Server/Packages/Flows/Flows.cs" Line="49" Column="6" />
-      <File FileName="mitmgtk/Src/Server/Packages/Flows/Connection.cs" Line="1" Column="1" />
-      <File FileName="mitmgtk/Src/Server/Packages/Flows/Request.cs" Line="6" Column="12" />
-      <File FileName="mitmgtk/Src/Server/Packages/Package.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/UI/MainWindow.cs" Line="13" Column="7" />
+      <File FileName="mitmgtk/Src/Server/Packages/Flows/Flows.cs" Line="32" Column="1" />
       <File FileName="mitmgtk/Src/Server/Packages/Flows/Response.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Server/Packages/DataPackage.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Server/Packages/Events.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Server/Packages/Package.cs" Line="6" Column="18" />
+      <File FileName="mitmgtk/Src/Server/Packages/Flows/Request.cs" Line="9" Column="3" />
+      <File FileName="mitmgtk/Src/Server/Packages/Flows/Connection.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Server/FechData.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Server/Connection.cs" Line="59" Column="17" />
+      <File FileName="mitmgtk/Src/Managers/PackagesManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
@@ -29,6 +20,7 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.mitmgtk PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Mitmgtk PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
 </Properties>
