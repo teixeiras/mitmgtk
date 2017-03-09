@@ -15,7 +15,7 @@ namespace Mitmgtk
 
 		public static WindowsPersistence factory(String name)
 		{
-			WindowsPersistence obj = WindowsPersistence.findByName(name);
+			WindowsPersistence obj = findByName(name);
 			if (obj == null) {
 				obj = new WindowsPersistence();
 				obj.name = name;
@@ -25,12 +25,12 @@ namespace Mitmgtk
 		}
 		public void save()
 		{
-			using (LiteDatabase db = WindowsPersistence.getDB())
+			using (LiteDatabase db = getDB())
 			{
 				// Get customer collection
 				var col = db.GetCollection<WindowsPersistence>(TABLE);
 
-				if (WindowsPersistence.findByName(this.name) == null)
+				if (findByName(this.name) == null)
 				{
 					col.Insert(this);
 
@@ -48,7 +48,7 @@ namespace Mitmgtk
 
 		public static WindowsPersistence findByName(String name)
 		{
-			using (LiteDatabase db =  WindowsPersistence.getDB())
+			using (LiteDatabase db =  getDB())
 			{
 				// Get customer collection
 				var col = db.GetCollection<WindowsPersistence>(TABLE);

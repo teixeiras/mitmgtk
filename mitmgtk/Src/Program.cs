@@ -24,7 +24,6 @@ namespace Mitmgtk
 
 			Connection connection = new Connection();
 			connection.Connect();
-			connection.send("oia");
 
 			MainWindow win = new MainWindow();
 			win.Show();

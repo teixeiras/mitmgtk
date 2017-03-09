@@ -22,3 +22,10 @@
 2017-03-08 23:33:47.8923|ERROR|Mitmgtk.Connection|An error has occurred in sending data.
 2017-03-08 23:34:28.2254|INFO|Mitmgtk.Connection|Connecting to: ws://localhost:8081/updates
 2017-03-08 23:34:28.4113|ERROR|Mitmgtk.Connection|An error has occurred in sending data.
+2017-03-09 12:41:23.0014|INFO|Mitmgtk.Connection|Connecting to: ws://localhost:8081/updates
+2017-03-09 12:42:10.8021|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
+2017-03-09 12:42:25.9073|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
+2017-03-09 12:42:52.8744|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
+2017-03-09 12:44:44.3858|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
+2017-03-09 12:45:08.4014|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
+2017-03-09 12:46:37.3670|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates

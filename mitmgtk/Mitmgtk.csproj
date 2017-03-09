@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{21680A28-EAA3-4F4D-BE0D-9E12EAFCE6CB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>mitmgtk</RootNamespace>
+    <RootNamespace>Mitmgtk</RootNamespace>
     <AssemblyName>mitmgtk</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -75,6 +75,7 @@
       <HintPath>..\packages\WebSocketSharpFork.1.0.4.0\lib\net35\websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -100,6 +101,15 @@
     <Compile Include="Src\Server\Connection.cs" />
     <Compile Include="Src\Persistence\BaseClass.cs" />
     <Compile Include="Src\Persistence\Settings.cs" />
+    <Compile Include="Src\Server\FechData.cs" />
+    <Compile Include="Src\Server\CookiesManager.cs" />
+    <Compile Include="Src\Server\Packages\DataPackage.cs" />
+    <Compile Include="Src\Server\Packages\Events.cs" />
+    <Compile Include="Src\Server\Packages\Flows\Connection.cs" />
+    <Compile Include="Src\Server\Packages\Flows\Flows.cs" />
+    <Compile Include="Src\Server\Packages\Flows\Request.cs" />
+    <Compile Include="Src\Server\Packages\Package.cs" />
+    <Compile Include="Src\Server\Packages\Flows\Response.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -107,6 +117,8 @@
     <Folder Include="Src\Persistence\" />
     <Folder Include="Src\Server\" />
     <Folder Include="Src\UI\" />
+    <Folder Include="Src\Server\Packages\" />
+    <Folder Include="Src\Server\Packages\Flows\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
