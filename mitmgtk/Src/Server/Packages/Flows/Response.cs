@@ -1,53 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Mitmgtk
 {
 	public class Response
 	{
 
-		"response": {
-      "http_version": "HTTP\/1.1",
-      "status_code": 304,
-      "reason": "Not Modified",
-      "headers": [
+		public String http_version { get; set; }
 
-		[
-          "Date",
-          "Thu, 09 Mar 2017 13:56:25 GMT"
-        ],
-        [
-          "Cache-Control",
-          "max-age=300"
-        ],
-        [
-          "Vary",
-          "Accept-Encoding"
-        ],
-        [
-          "Connection",
-          "keep-alive"
-        ],
-        [
-          "Via",
-          "https\/1.1 uklon6-edge-bx-019.ts.apple.com (ApacheTrafficServer\/7.0.0)"
-        ],
-        [
-          "Server",
-          "ATS\/7.0.0"
-        ],
-        [
-          "X-Cache",
-          "hit-fresh"
-        ]
-      ],
-      "contentLength": null,
-      "contentHash": null,
-      "timestamp_start": 1489067785.5017,
-      "timestamp_end": 1489067785.5049,
-      "is_replay": false
-    }
+		public String status_code { get; set; }
 
-		public Response()
+		public String reason { get; set; }
+
+		public Dictionary<String, String> headers { get; set; }
+
+		public String contentLength { get; set; }
+
+		public String contentHash { get; set; }
+
+		public String timestamp_start { get; set; }
+
+		public String timestamp_end { get; set; }
+
+		public Boolean is_replay { get; set; }
+
+		public Response(String http_version, String status_code, String reason, Dictionary<String, String> headers, String contentLength, String contentHash, String timestamp_start, String timestamp_end, Boolean is_replay)
 		{
+			this.http_version = http_version;
+			this.status_code = status_code;
+			this.reason = reason;
+			this.headers = headers;
+			this.contentLength = contentLength;
+			this.contentHash = contentLength;
+			this.timestamp_start = timestamp_start;
+			this.timestamp_end = timestamp_end;
+			this.is_replay = is_replay;
+
 		}
 	}
 }
