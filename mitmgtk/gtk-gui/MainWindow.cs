@@ -5,6 +5,58 @@ public partial class MainWindow
 {
 	private global::Gtk.UIManager UIManager;
 
+	private global::Gtk.Action MainAction;
+
+	private global::Gtk.Action StartAction;
+
+	private global::Gtk.Action OptionsAction;
+
+	private global::Gtk.Action FlowAction;
+
+	private global::Gtk.ToggleAction HTTP20Action;
+
+	private global::Gtk.ToggleAction WebSocketsAction;
+
+	private global::Gtk.ToggleAction RawTCPAction;
+
+	private global::Gtk.Action HTTPOptionsAction;
+
+	private global::Gtk.Action ProtocolSupportAction;
+
+	private global::Gtk.ToggleAction DisableCachingAction;
+
+	private global::Gtk.ToggleAction DisableCompressionAction;
+
+	private global::Gtk.Action ViewOptionsAction;
+
+	private global::Gtk.ToggleAction UseHostHeaderAction;
+
+	private global::Gtk.ToggleAction DisplayEventLogAction;
+
+	private global::Gtk.Action FlowModificationAction;
+
+	private global::Gtk.Action refreshAction;
+
+	private global::Gtk.Action copyAction;
+
+	private global::Gtk.Action undoAction;
+
+	private global::Gtk.Action cancelAction;
+
+	private global::Gtk.Action ExportAction;
+
+	private global::Gtk.Action harddiskAction;
+
+	private global::Gtk.Action InterceptionAction;
+
+	private global::Gtk.Action applyAction;
+
+	private global::Gtk.Action stopAction;
+
+	private global::Gtk.Action preferencesAction;
+
+	private global::Gtk.Action quitAction;
+
 	private global::Gtk.VBox vbox3;
 
 	private global::Gtk.MenuBar menubar1;
@@ -25,12 +77,96 @@ public partial class MainWindow
 
 	private global::Gtk.Statusbar statusbar1;
 
+	private global::Gtk.HBox hbox1;
+
+	private global::Gtk.Image stateIcon;
+
+	private global::Gtk.Label stateLabel;
+
 	protected virtual void Build()
 	{
 		global::Stetic.Gui.Initialize(this);
 		// Widget MainWindow
 		this.UIManager = new global::Gtk.UIManager();
 		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup("Default");
+		this.MainAction = new global::Gtk.Action("MainAction", global::Mono.Unix.Catalog.GetString("Main"), null, null);
+		this.MainAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Main");
+		w1.Add(this.MainAction, null);
+		this.StartAction = new global::Gtk.Action("StartAction", global::Mono.Unix.Catalog.GetString("Start"), null, null);
+		this.StartAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Start");
+		w1.Add(this.StartAction, null);
+		this.OptionsAction = new global::Gtk.Action("OptionsAction", global::Mono.Unix.Catalog.GetString("Options"), null, null);
+		this.OptionsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Options");
+		w1.Add(this.OptionsAction, null);
+		this.FlowAction = new global::Gtk.Action("FlowAction", global::Mono.Unix.Catalog.GetString("Flow"), null, null);
+		this.FlowAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Flow");
+		w1.Add(this.FlowAction, null);
+		this.HTTP20Action = new global::Gtk.ToggleAction("HTTP20Action", global::Mono.Unix.Catalog.GetString("HTTP/2.0"), null, null);
+		this.HTTP20Action.ShortLabel = global::Mono.Unix.Catalog.GetString("HTTP/2.0");
+		w1.Add(this.HTTP20Action, null);
+		this.WebSocketsAction = new global::Gtk.ToggleAction("WebSocketsAction", global::Mono.Unix.Catalog.GetString("WebSockets"), null, null);
+		this.WebSocketsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("WebSockets");
+		w1.Add(this.WebSocketsAction, null);
+		this.RawTCPAction = new global::Gtk.ToggleAction("RawTCPAction", global::Mono.Unix.Catalog.GetString("Raw TCP"), null, null);
+		this.RawTCPAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Raw TCP");
+		w1.Add(this.RawTCPAction, null);
+		this.HTTPOptionsAction = new global::Gtk.Action("HTTPOptionsAction", global::Mono.Unix.Catalog.GetString("HTTP Options"), null, null);
+		this.HTTPOptionsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("HTTP Options");
+		w1.Add(this.HTTPOptionsAction, null);
+		this.ProtocolSupportAction = new global::Gtk.Action("ProtocolSupportAction", global::Mono.Unix.Catalog.GetString("Protocol Support"), null, null);
+		this.ProtocolSupportAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Protocol Support");
+		w1.Add(this.ProtocolSupportAction, null);
+		this.DisableCachingAction = new global::Gtk.ToggleAction("DisableCachingAction", global::Mono.Unix.Catalog.GetString("Disable Caching"), null, null);
+		this.DisableCachingAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Disable Caching");
+		w1.Add(this.DisableCachingAction, null);
+		this.DisableCompressionAction = new global::Gtk.ToggleAction("DisableCompressionAction", global::Mono.Unix.Catalog.GetString("Disable Compression"), null, null);
+		this.DisableCompressionAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Disable Compression");
+		w1.Add(this.DisableCompressionAction, null);
+		this.ViewOptionsAction = new global::Gtk.Action("ViewOptionsAction", global::Mono.Unix.Catalog.GetString("View Options"), null, null);
+		this.ViewOptionsAction.ShortLabel = global::Mono.Unix.Catalog.GetString("View Options");
+		w1.Add(this.ViewOptionsAction, null);
+		this.UseHostHeaderAction = new global::Gtk.ToggleAction("UseHostHeaderAction", global::Mono.Unix.Catalog.GetString("Use Host Header"), null, null);
+		this.UseHostHeaderAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Use Host Header");
+		w1.Add(this.UseHostHeaderAction, null);
+		this.DisplayEventLogAction = new global::Gtk.ToggleAction("DisplayEventLogAction", global::Mono.Unix.Catalog.GetString("Display Event Log"), null, null);
+		this.DisplayEventLogAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Display Event Log");
+		w1.Add(this.DisplayEventLogAction, null);
+		this.FlowModificationAction = new global::Gtk.Action("FlowModificationAction", global::Mono.Unix.Catalog.GetString("Flow Modification"), null, null);
+		this.FlowModificationAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Flow Modification");
+		w1.Add(this.FlowModificationAction, null);
+		this.refreshAction = new global::Gtk.Action("refreshAction", global::Mono.Unix.Catalog.GetString("_Refresh"), null, "gtk-refresh");
+		this.refreshAction.ShortLabel = global::Mono.Unix.Catalog.GetString("_Refresh");
+		w1.Add(this.refreshAction, null);
+		this.copyAction = new global::Gtk.Action("copyAction", global::Mono.Unix.Catalog.GetString("Duplicate"), null, "gtk-copy");
+		this.copyAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Duplicate");
+		w1.Add(this.copyAction, null);
+		this.undoAction = new global::Gtk.Action("undoAction", global::Mono.Unix.Catalog.GetString("Revert"), null, "gtk-undo");
+		this.undoAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Revert");
+		w1.Add(this.undoAction, null);
+		this.cancelAction = new global::Gtk.Action("cancelAction", global::Mono.Unix.Catalog.GetString("Delete"), null, "gtk-cancel");
+		this.cancelAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Delete");
+		w1.Add(this.cancelAction, null);
+		this.ExportAction = new global::Gtk.Action("ExportAction", global::Mono.Unix.Catalog.GetString("Export"), null, null);
+		this.ExportAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Export");
+		w1.Add(this.ExportAction, null);
+		this.harddiskAction = new global::Gtk.Action("harddiskAction", global::Mono.Unix.Catalog.GetString("Download"), null, "gtk-harddisk");
+		this.harddiskAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Download");
+		w1.Add(this.harddiskAction, null);
+		this.InterceptionAction = new global::Gtk.Action("InterceptionAction", global::Mono.Unix.Catalog.GetString("Interception"), null, null);
+		this.InterceptionAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Interception");
+		w1.Add(this.InterceptionAction, null);
+		this.applyAction = new global::Gtk.Action("applyAction", global::Mono.Unix.Catalog.GetString("Resume"), null, "gtk-apply");
+		this.applyAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Resume");
+		w1.Add(this.applyAction, null);
+		this.stopAction = new global::Gtk.Action("stopAction", global::Mono.Unix.Catalog.GetString("Abort"), null, "gtk-stop");
+		this.stopAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Abort");
+		w1.Add(this.stopAction, null);
+		this.preferencesAction = new global::Gtk.Action("preferencesAction", global::Mono.Unix.Catalog.GetString("_Preferences"), null, "gtk-preferences");
+		this.preferencesAction.ShortLabel = global::Mono.Unix.Catalog.GetString("_Preferences");
+		w1.Add(this.preferencesAction, null);
+		this.quitAction = new global::Gtk.Action("quitAction", global::Mono.Unix.Catalog.GetString("Exit"), null, "gtk-quit");
+		this.quitAction.ShortLabel = global::Mono.Unix.Catalog.GetString("Exit");
+		w1.Add(this.quitAction, null);
 		this.UIManager.InsertActionGroup(w1, 0);
 		this.AddAccelGroup(this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -41,7 +177,7 @@ public partial class MainWindow
 		this.vbox3.Name = "vbox3";
 		this.vbox3.Spacing = 6;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString("<ui><menubar name='menubar1'/></ui>");
+		this.UIManager.AddUiFromString("<ui><menubar name='menubar1'><menu name='MainAction' action='MainAction'><menuitem name='preferencesAction' action='preferencesAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='StartAction' action='StartAction'/><menu name='OptionsAction' action='OptionsAction'><menuitem name='ProtocolSupportAction' action='ProtocolSupportAction'/><menuitem name='HTTP20Action' action='HTTP20Action'/><menuitem name='WebSocketsAction' action='WebSocketsAction'/><menuitem name='RawTCPAction' action='RawTCPAction'/><menuitem name='HTTPOptionsAction' action='HTTPOptionsAction'/><menuitem name='DisableCachingAction' action='DisableCachingAction'/><menuitem name='DisableCompressionAction' action='DisableCompressionAction'/><menuitem name='ViewOptionsAction' action='ViewOptionsAction'/><menuitem name='UseHostHeaderAction' action='UseHostHeaderAction'/><menuitem name='DisplayEventLogAction' action='DisplayEventLogAction'/></menu><menu name='FlowAction' action='FlowAction'><menuitem name='FlowModificationAction' action='FlowModificationAction'/><menuitem name='refreshAction' action='refreshAction'/><menuitem name='copyAction' action='copyAction'/><menuitem name='undoAction' action='undoAction'/><menuitem name='cancelAction' action='cancelAction'/><menuitem name='ExportAction' action='ExportAction'/><menuitem name='harddiskAction' action='harddiskAction'/><menuitem name='InterceptionAction' action='InterceptionAction'/><menuitem name='applyAction' action='applyAction'/><menuitem name='stopAction' action='stopAction'/></menu></menubar></ui>");
 		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget("/menubar1")));
 		this.menubar1.Name = "menubar1";
 		this.vbox3.Add(this.menubar1);
@@ -96,17 +232,43 @@ public partial class MainWindow
 		this.statusbar1 = new global::Gtk.Statusbar();
 		this.statusbar1.Name = "statusbar1";
 		this.statusbar1.Spacing = 6;
-		this.vbox3.Add(this.statusbar1);
-		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.statusbar1]));
-		w10.Position = 2;
+		// Container child statusbar1.Gtk.Box+BoxChild
+		this.hbox1 = new global::Gtk.HBox();
+		this.hbox1.Name = "hbox1";
+		this.hbox1.Spacing = 6;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.stateIcon = new global::Gtk.Image();
+		this.stateIcon.Name = "stateIcon";
+		this.hbox1.Add(this.stateIcon);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.stateIcon]));
+		w10.Position = 0;
 		w10.Expand = false;
 		w10.Fill = false;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.stateLabel = new global::Gtk.Label();
+		this.stateLabel.Name = "stateLabel";
+		this.stateLabel.LabelProp = global::Mono.Unix.Catalog.GetString("label1");
+		this.hbox1.Add(this.stateLabel);
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.stateLabel]));
+		w11.Position = 1;
+		w11.Expand = false;
+		w11.Fill = false;
+		this.statusbar1.Add(this.hbox1);
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.statusbar1[this.hbox1]));
+		w12.Position = 3;
+		w12.Expand = false;
+		w12.Fill = false;
+		this.vbox3.Add(this.statusbar1);
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.statusbar1]));
+		w13.Position = 2;
+		w13.Expand = false;
+		w13.Fill = false;
 		this.Add(this.vbox3);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
 		}
-		this.DefaultWidth = 400;
+		this.DefaultWidth = 472;
 		this.DefaultHeight = 335;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);

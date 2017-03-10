@@ -87,7 +87,9 @@ namespace Mitmgtk
 			}
 			catch (Exception e)
 			{
-				throw e;
+				DelayAction action = new DelayAction(2000, () => {
+					Connect();
+				});
 			}
 		}
 

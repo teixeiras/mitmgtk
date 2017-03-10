@@ -951,3 +951,13 @@ Parameter name: instantiation
 2017-03-10 16:53:44.5644|INFO|Mitmgtk.Connection|Mitmgtk.UpdatesPackage.Package`1[Mitmgtk.UpdatesPackage.Events]
 2017-03-10 16:53:50.5350|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
 2017-03-10 16:54:25.6613|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
+2017-03-10 16:57:05.5741|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
+2017-03-10 16:58:04.1693|INFO|Mitmgtk.Connection|Request arrived in updates tunnel:{"resource": "events", "cmd": "add", "data": {"id": 4332742864, "message": "127.0.0.1:51876: clientconnect", "level": "info"}}
+2017-03-10 16:58:04.2122|INFO|Mitmgtk.Connection|Mitmgtk.UpdatesPackage.Package`1[Mitmgtk.UpdatesPackage.Events]
+2017-03-10 16:58:04.2130|INFO|Mitmgtk.Connection|Request arrived in updates tunnel:{"resource": "events", "cmd": "add", "data": {"id": 4332750552, "message": "127.0.0.1:51876: Set new server address: ('photos-thumb.dropbox.com', 443)", "level": "debug"}}
+2017-03-10 16:58:04.2144|INFO|Mitmgtk.Connection|Mitmgtk.UpdatesPackage.Package`1[Mitmgtk.UpdatesPackage.Events]
+2017-03-10 16:58:04.2148|INFO|Mitmgtk.Connection|Request arrived in updates tunnel:{"resource": "events", "cmd": "add", "data": {"id": 4332751728, "message": "127.0.0.1:51876: Establish TLS with client", "level": "debug"}}
+2017-03-10 16:58:04.2157|INFO|Mitmgtk.Connection|Mitmgtk.UpdatesPackage.Package`1[Mitmgtk.UpdatesPackage.Events]
+2017-03-10 16:58:04.2251|INFO|Mitmgtk.Connection|Request arrived in updates tunnel:{"resource": "events", "cmd": "add", "data": {"id": 4332751000, "message": "127.0.0.1:51876: clientdisconnect", "level": "info"}}
+2017-03-10 16:58:04.2258|INFO|Mitmgtk.Connection|Mitmgtk.UpdatesPackage.Package`1[Mitmgtk.UpdatesPackage.Events]
+2017-03-10 17:24:38.9244|INFO|Mitmgtk.Connection|Connecting to: 127.0.0.1:8081/updates
