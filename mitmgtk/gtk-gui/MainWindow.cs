@@ -194,7 +194,7 @@ public partial class MainWindow
 		this.hpaned3 = new global::Gtk.HPaned();
 		this.hpaned3.CanFocus = true;
 		this.hpaned3.Name = "hpaned3";
-		this.hpaned3.Position = 231;
+		this.hpaned3.Position = 450;
 		// Container child hpaned3.Gtk.Paned+PanedChild
 		this.GtkScrolledWindow3 = new global::Gtk.ScrolledWindow();
 		this.GtkScrolledWindow3.Name = "GtkScrolledWindow3";
@@ -272,5 +272,6 @@ public partial class MainWindow
 		this.DefaultHeight = 335;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.quitAction.Activated += new global::System.EventHandler(this.ExitAction);
 	}
 }

@@ -51,3 +51,10 @@
 /Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.VA.dll
 /Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.WordNet.dll
 /Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.Bot.xml
+/Users/teixeiras/mitmgtk/mitmgtk/bin/Debug/Jint.dll
+/Users/teixeiras/mitmgtk/mitmgtk/bin/Debug/Syn.Bot.dll
+/Users/teixeiras/mitmgtk/mitmgtk/bin/Debug/Syn.Log.dll
+/Users/teixeiras/mitmgtk/mitmgtk/bin/Debug/Syn.Neuro.dll
+/Users/teixeiras/mitmgtk/mitmgtk/bin/Debug/Syn.VA.dll
+/Users/teixeiras/mitmgtk/mitmgtk/bin/Debug/Syn.WordNet.dll
+/Users/teixeiras/mitmgtk/mitmgtk/bin/Debug/Syn.Bot.xml

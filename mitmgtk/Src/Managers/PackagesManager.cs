@@ -37,12 +37,17 @@ namespace Mitmgtk
 		public static FlowsObserver flowsObserver = new FlowsObserver();
 
 		private static List<Package<Flows>> flows = new List<Package<Flows>>();
+		private static List<Package<Events>> events = new List<Package<Events>>();
 
 		public static List<Package<Flows>>GetFlows()
 		{
 			return flows;
 		}
 
+		public static List<Package<Events>> GetEvents()
+		{
+			return events;
+		}
 		public static void AddFlow(Package<Flows> package) 
 		{
 			flows.Add(package);
@@ -51,7 +56,9 @@ namespace Mitmgtk
 
 		public static void AddEvents(Package<Events> package)
 		{
+			events.Add(package);
 			eventsObserver.Notify(package);
+
 		}
 	}
 }

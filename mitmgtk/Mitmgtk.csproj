@@ -121,6 +121,7 @@
     <Compile Include="Src\Managers\PackagesManager.cs" />
     <Compile Include="Src\Managers\Observers.cs" />
     <Compile Include="Src\Managers\DelayAction.cs" />
+    <Compile Include="Src\UI\Store\FlowListStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -131,6 +132,7 @@
     <Folder Include="Src\Server\Packages\" />
     <Folder Include="Src\Server\Packages\Flows\" />
     <Folder Include="Src\Managers\" />
+    <Folder Include="Src\UI\Store\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

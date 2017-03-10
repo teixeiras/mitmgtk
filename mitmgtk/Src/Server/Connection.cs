@@ -10,7 +10,12 @@ using Mitmgtk.UpdatesPackage;
 //https://www.dropbox.com/s/5zr5x5njq9rvt3p/Screenshot%202017-03-09%2014.41.36.png?dl=0
 namespace Mitmgtk
 {
-	public class Connection
+	public interface ConnectionObserverImp
+	{
+		void connectionStatusChanged(bool isConnected);
+	}
+
+	public class Connection : Observers<ConnectionObserverImp,bool>
 	{
 		const String EVENTS = "events";
 		const String FLOWS = "flows";
@@ -18,8 +23,9 @@ namespace Mitmgtk
 
 		private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
 		static JavaScriptSerializer serializer = new JavaScriptSerializer();
-		int retries = 0;
 		static WebSocket socket;
+		private DelayAction action = null;
+
 		public Connection()
 		{
 		}
@@ -47,6 +53,10 @@ namespace Mitmgtk
 				logger.Info("Connecting to: " + Settings.instance().defaultHost + "/updates");
 				socket = new WebSocket("ws://" + Settings.instance().defaultHost + "/updates");
 				updateCookiesCookies(socket);
+				socket.OnOpen += (sender, e) =>
+				{
+					this.Notify(true);
+				};
 				socket.OnError += (sender, e) =>
 				{
 					logger.Error(e.Message);
@@ -87,26 +97,17 @@ namespace Mitmgtk
 			}
 			catch (Exception e)
 			{
-				DelayAction action = new DelayAction(2000, () => {
+				this.Notify(false);
+				logger.Error(e.Message);
+				action = new DelayAction(2000, () => {
 					Connect();
 				});
 			}
 		}
 
-		public void send(String message)
+		override public void callBack(ConnectionObserverImp observer, bool argument)
 		{
-			try
-			{
-				socket.Send(message);
-				retries = 0;
-			}
-			catch (Exception e)
-			{
-				logger.Error(e.Message);
-				this.Connect();
-				this.send(message);
-				retries++;
-			}
+			observer.connectionStatusChanged(argument);
 		}
 
 	}

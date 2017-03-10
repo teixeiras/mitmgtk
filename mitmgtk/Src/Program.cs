@@ -22,8 +22,6 @@ namespace Mitmgtk
 				LogManager.DisableLogging();
 			}
 
-			Connection connection = new Connection();
-			connection.Connect();
 
 			MainWindow win = new MainWindow();
 			win.Show();

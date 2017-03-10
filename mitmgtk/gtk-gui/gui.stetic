@@ -162,6 +162,7 @@
         <property name="Label" translatable="yes">Exit</property>
         <property name="ShortLabel" translatable="yes">Exit</property>
         <property name="StockId">gtk-quit</property>
+        <signal name="Activated" handler="ExitAction" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -223,7 +224,7 @@
               <widget class="Gtk.HPaned" id="hpaned3">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="Position">231</property>
+                <property name="Position">450</property>
                 <child>
                   <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow3">
                     <property name="MemberName" />

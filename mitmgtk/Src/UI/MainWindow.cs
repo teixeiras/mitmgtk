@@ -3,11 +3,16 @@ using Gtk;
 using Gdk;
 using Mitmgtk;
 using Mitmgtk.UpdatesPackage;
-public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverImpl
+
+public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverImpl, ConnectionObserverImp
 {
 	private static StatusIcon trayIcon;
-
+	private FlowListStore store;
 	private const String WINDOW_NAME = "main";
+	private Mitmgtk.Connection connection;
+	private Menu popupMenu = new Menu();
+
+
 	public MainWindow() : base(Gtk.WindowType.Toplevel)
 	{
 		Build();
@@ -21,19 +26,8 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 			this.Resize(windowDimension.width, windowDimension.height);
 		}
 
-		trayIcon = new StatusIcon(new Pixbuf("images/tray_icon_ok.png"));
-		trayIcon.Visible = true;
-
-		// Show/Hide the window (even from the Panel/Taskbar) when the TrayIcon has been clicked.
-		trayIcon.Activate += delegate { 
-			this.Visible = !this.Visible; 
-		};
-		// Show a pop up menu when the icon has been right clicked.
-		trayIcon.PopupMenu += OnTrayIconPopup;
-
-		// A Tooltip for the Icon
-		trayIcon.Tooltip = "Hello World Icon";
-
+		stateIcon.Stock = Stock.No;
+		stateLabel.Text = "Disconnected";
 
 		/*Setup dialog = new Setup
 				();
@@ -42,8 +36,21 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 		dialog.Response += new ResponseHandler(on_dialog_response);
 		dialog.Run();
 		dialog.Destroy();*/
+
+		InitializeTray();
+
+		connection = new Mitmgtk.Connection();
+		connection.Attach(this);
+		connection.Connect();
+
+		initializeFlowListView();
+
 		PackagesManager.eventsObserver.Attach(this);
 		PackagesManager.flowsObserver.Attach(this);
+
+		store = new FlowListStore();
+		flowsTree.Model = store;
+
 		updateData();
 	}
 
@@ -58,23 +65,40 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 		a.RetVal = true;
 	}
 
-	// Create the popup menu, on right click.
-	static void OnTrayIconPopup(object o, EventArgs args)
+	private void InitializeTray()
 	{
-		Menu popupMenu = new Menu();
+		trayIcon = new StatusIcon();
+		trayIcon.Visible = true;
+
+		// Show/Hide the window (even from the Panel/Taskbar) when the TrayIcon has been clicked.
+		trayIcon.Activate += delegate
+		{
+			this.Visible = !this.Visible;
+		};
+		// Show a pop up menu when the icon has been right clicked.
+		trayIcon.PopupMenu += OnTrayIconPopup;
+
+		// A Tooltip for the Icon
+
 		ImageMenuItem menuItemQuit = new ImageMenuItem("Quit");
 		Gtk.Image appimg = new Gtk.Image(Stock.Quit, IconSize.Menu);
 		menuItemQuit.Image = appimg;
 		popupMenu.Add(menuItemQuit);
-		// Quit the application when quit has been clicked.
-		menuItemQuit.Activated += delegate { 
-			Application.Quit(); 
+		menuItemQuit.Activated += delegate
+		{
+			Application.Quit();
 		};
+
+	}
+
+	// Create the popup menu, on right click.
+	void OnTrayIconPopup(object o, EventArgs args)
+	{
 		popupMenu.ShowAll();
 		popupMenu.Popup();
 	}
 
-	protected override bool OnConfigureEvent(Gdk.EventConfigure args)
+	protected override bool OnConfigureEvent(EventConfigure args)
 	{
 		base.OnConfigureEvent(args);
 		storeActualWindowDimension();
@@ -92,10 +116,36 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 
 	}
 
+	public void connectionStatusChanged(bool isConnected)
+	{
+		if (isConnected)
+		{
+			stateIcon.Stock = Stock.Yes;
+			trayIcon.Stock = Stock.Yes;
+			stateLabel.Text = "Connected";
+			trayIcon.Tooltip = "Connected";
+
+		}
+		else
+		{
+			stateIcon.Stock = Stock.No;
+			trayIcon.Stock = Stock.No;
+			stateLabel.Text = "Disconnected";
+			trayIcon.Tooltip = "Disconnected";
+		}
+
+
+	}
 
 	public void NewEventHasArrived(Package<Events> packageEvent)
 	{
-		//eventsTextview.Buffer.Text = eventsTextview.Buffer.Text+"\n[" + packageEvent.data.level + "]" + packageEvent.data.message;
+		String str = "";
+		foreach (Package<Events> eventPackage in PackagesManager.GetEvents())
+		{
+			str += "\n[" + eventPackage.data.level + "]" + eventPackage.data.message;
+		}
+	
+		//eventsTextview.Buffer.Text = str;
 	}
 
 	public void NewFlowHasArrived(Package<Flows> packageFlows)
@@ -106,30 +156,35 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 
 	void updateData()
 	{
+		store.Update();
 
-		Gtk.TreeViewColumn pathColumn = new Gtk.TreeViewColumn();
+	}
+
+	void initializeFlowListView()
+	{
+		TreeViewColumn pathColumn = new TreeViewColumn();
 		pathColumn.Title = "Path";
-		Gtk.CellRendererText pathNameCell = new Gtk.CellRendererText();
+		CellRendererText pathNameCell = new CellRendererText();
 		pathColumn.PackStart(pathNameCell, true);
 
-		Gtk.TreeViewColumn methodColumn = new Gtk.TreeViewColumn();
+		TreeViewColumn methodColumn = new Gtk.TreeViewColumn();
 		methodColumn.Title = "Method";
-		Gtk.CellRendererText methodNameCell = new Gtk.CellRendererText();
+		CellRendererText methodNameCell = new CellRendererText();
 		methodColumn.PackStart(methodNameCell, true);
 
-		Gtk.TreeViewColumn statusColumn = new Gtk.TreeViewColumn();
+		TreeViewColumn statusColumn = new TreeViewColumn();
 		statusColumn.Title = "Status";
-		Gtk.CellRendererText statusNameCell = new Gtk.CellRendererText();
+		CellRendererText statusNameCell = new CellRendererText();
 		statusColumn.PackStart(statusNameCell, true);
 
-		Gtk.TreeViewColumn sizeColumn = new Gtk.TreeViewColumn();
+		TreeViewColumn sizeColumn = new TreeViewColumn();
 		sizeColumn.Title = "Size";
-		Gtk.CellRendererText sizeNameCell = new Gtk.CellRendererText();
+		CellRendererText sizeNameCell = new CellRendererText();
 		sizeColumn.PackStart(sizeNameCell, true);
 
-		Gtk.TreeViewColumn timeColumn = new Gtk.TreeViewColumn();
+		TreeViewColumn timeColumn = new TreeViewColumn();
 		timeColumn.Title = "Time";
-		Gtk.CellRendererText timeNameCell = new Gtk.CellRendererText();
+		CellRendererText timeNameCell = new CellRendererText();
 		timeColumn.PackStart(timeNameCell, true);
 
 
@@ -147,38 +202,11 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 		statusColumn.AddAttribute(statusNameCell, "text", 2);
 		sizeColumn.AddAttribute(sizeNameCell, "text", 3);
 		timeColumn.AddAttribute(timeNameCell, "text", 4);
-
-
-		// Create a model that will hold two strings - Artist Name and Song Title
-		Gtk.ListStore flowsListStore = new Gtk.ListStore(typeof(string), typeof(string), typeof(Boolean), typeof(string), typeof(string));
-
-		// Add some data to the store
-		foreach (Package<Flows> flow in PackagesManager.GetFlows())
-		{
-			if (flow.data.response != null)
-			{
-				flowsListStore.AppendValues(flow.data.request.path,
-										flow.data.request.method,
-										flow.data.intercepted,
-										flow.data.response.contentLength,
-											"" + (flow.data.response.timestamp_end - flow.data.response.timestamp_start));
-			}
-			else
-			{
-				flowsListStore.AppendValues(flow.data.request.path,
-									flow.data.request.method,
-									flow.data.intercepted,
-									"","");
-			
-			}
-
-		}
-
-
-
-		// Assign the model to the TreeView
-		flowsTree.Model = flowsListStore;
-
-
 	}
+
+	protected void ExitAction(object sender, EventArgs e)
+	{
+		Application.Quit();
+	}
+
 }
