@@ -5,14 +5,14 @@ namespace Mitmgtk
 {
 	public class PackagesManager
 	{
-		List<Package> packages = new List<Package>();
+		List<Package<Flows>> packages = new List<Package<Flows>>();
 		public PackagesManager()
 		{
 		}
 
-		Package[] filteredByFlows()
+		Package<Flows>[] filteredByFlows()
 		{
-			
+			return null;
 		}
 	}
 }

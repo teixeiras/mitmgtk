@@ -3,38 +3,18 @@ using System.Web.Script.Serialization;
 using NLog;
 namespace Mitmgtk.UpdatesPackage
 {
-	public class Package
+	public class SimplePackage
 	{
-		private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-
-		static JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-		const String EVENTS = "events";
-		const String FLOWS = "flows";
-		String resource { get; set;}
-		String cmd { get; set; }
-		String data { get; set; }
-
-		DataPackage package
+		public String resource { get; set;}
+		public String cmd { get; set; }
+		public SimplePackage()
 		{
-			get
-			{
-				if (resource.Equals(EVENTS))
-				{
-					return (DataPackage)serializer.Deserialize(data, typeof(Events));
-
-				}
-				else if (resource.Equals(FLOWS))
-				{
-					return (DataPackage)serializer.Deserialize(data, typeof(Flows));
-				}
-				else
-				{
-					logger.Error("Invalid Resource " + resource);
-					return null;
-				}
-			}
 		}
+	}
+
+	public class Package<T> : SimplePackage
+	{
+		public T data { get; set; }
 		public Package()
 		{
 		}

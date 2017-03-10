@@ -11,7 +11,7 @@ namespace Mitmgtk.UpdatesPackage
 		public String port { get; set; }
 		public String path { get; set; }
 		public String http_version { get; set; }
-		public Dictionary<String, String> headers { get; set; }
+		public List<List<String>> headers { get; set; }
 
 
 		public String contentLength { get; set; }

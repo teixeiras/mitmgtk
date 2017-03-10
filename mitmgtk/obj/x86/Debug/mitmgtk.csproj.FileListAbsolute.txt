@@ -43,3 +43,4 @@
 /Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/NLog.xml
 /Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/LiteDB.xml
 /Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Newtonsoft.Json.xml
+/Users/teixeiras/mitmgtk/mitmgtk/obj/x86/Debug/mitmgtk.csprojResolveAssemblyReference.cache

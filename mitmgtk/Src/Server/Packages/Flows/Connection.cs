@@ -7,10 +7,8 @@ namespace Mitmgtk.UpdatesPackage
 		{
 			public String[] address { get; set; }
 			public Boolean use_ipv6 { get; set; }
-			public Address(String[] address, Boolean use_ipv6)
+			public Address()
 			{
-				this.address = address;
-				this.use_ipv6 = use_ipv6;
 			}
 		}
 		public Address address { get; set; }

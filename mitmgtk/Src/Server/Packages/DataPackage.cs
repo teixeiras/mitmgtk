@@ -5,9 +5,8 @@ namespace Mitmgtk.UpdatesPackage
 	{
 		public String id { get; set;}
 
-		public DataPackage(String id)
+		public DataPackage()
 		{
-			this.id = id;
 		}
 	}
 }
