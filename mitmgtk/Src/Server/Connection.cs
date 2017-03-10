@@ -62,10 +62,12 @@ namespace Mitmgtk
 						if (package.resource.Equals(EVENTS))
 						{
 							completePackage = (Package<Events>)serializer.Deserialize(e.Data, typeof(Package<Events>));
+							PackagesManager.AddEvents((Package<Events>)completePackage);
 						}
 						else if (package.resource.Equals(FLOWS))
 						{
 							completePackage = (Package<Flows>)serializer.Deserialize(e.Data, typeof(Package<Flows>));
+							PackagesManager.AddFlow((Package<Flows>)completePackage);
 						}
 						else
 						{

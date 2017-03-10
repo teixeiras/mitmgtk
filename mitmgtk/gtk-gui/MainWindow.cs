@@ -9,13 +9,19 @@ public partial class MainWindow
 
 	private global::Gtk.MenuBar menubar1;
 
-	private global::Gtk.HPaned hpaned2;
+	private global::Gtk.VPaned vpaned3;
 
-	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+	private global::Gtk.HPaned hpaned3;
 
-	private global::Gtk.TreeView treeview3;
+	private global::Gtk.ScrolledWindow GtkScrolledWindow3;
 
-	private global::Gtk.VBox vbox4;
+	private global::Gtk.TreeView flowsTree;
+
+	private global::Gtk.VBox vbox5;
+
+	private global::Gtk.ScrolledWindow GtkScrolledWindow2;
+
+	private global::Gtk.TextView eventsTextview;
 
 	private global::Gtk.Statusbar statusbar1;
 
@@ -44,46 +50,64 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.hpaned2 = new global::Gtk.HPaned();
-		this.hpaned2.CanFocus = true;
-		this.hpaned2.Name = "hpaned2";
-		this.hpaned2.Position = 231;
-		// Container child hpaned2.Gtk.Paned+PanedChild
-		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow();
-		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
-		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-		this.treeview3 = new global::Gtk.TreeView();
-		this.treeview3.CanFocus = true;
-		this.treeview3.Name = "treeview3";
-		this.GtkScrolledWindow.Add(this.treeview3);
-		this.hpaned2.Add(this.GtkScrolledWindow);
-		global::Gtk.Paned.PanedChild w4 = ((global::Gtk.Paned.PanedChild)(this.hpaned2[this.GtkScrolledWindow]));
+		this.vpaned3 = new global::Gtk.VPaned();
+		this.vpaned3.CanFocus = true;
+		this.vpaned3.Name = "vpaned3";
+		this.vpaned3.Position = 200;
+		// Container child vpaned3.Gtk.Paned+PanedChild
+		this.hpaned3 = new global::Gtk.HPaned();
+		this.hpaned3.CanFocus = true;
+		this.hpaned3.Name = "hpaned3";
+		this.hpaned3.Position = 231;
+		// Container child hpaned3.Gtk.Paned+PanedChild
+		this.GtkScrolledWindow3 = new global::Gtk.ScrolledWindow();
+		this.GtkScrolledWindow3.Name = "GtkScrolledWindow3";
+		this.GtkScrolledWindow3.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow3.Gtk.Container+ContainerChild
+		this.flowsTree = new global::Gtk.TreeView();
+		this.flowsTree.CanFocus = true;
+		this.flowsTree.Name = "flowsTree";
+		this.GtkScrolledWindow3.Add(this.flowsTree);
+		this.hpaned3.Add(this.GtkScrolledWindow3);
+		global::Gtk.Paned.PanedChild w4 = ((global::Gtk.Paned.PanedChild)(this.hpaned3[this.GtkScrolledWindow3]));
 		w4.Resize = false;
-		// Container child hpaned2.Gtk.Paned+PanedChild
-		this.vbox4 = new global::Gtk.VBox();
-		this.vbox4.Name = "vbox4";
-		this.vbox4.Spacing = 6;
-		this.hpaned2.Add(this.vbox4);
-		this.vbox3.Add(this.hpaned2);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hpaned2]));
-		w6.Position = 1;
+		// Container child hpaned3.Gtk.Paned+PanedChild
+		this.vbox5 = new global::Gtk.VBox();
+		this.vbox5.Name = "vbox5";
+		this.vbox5.Spacing = 6;
+		this.hpaned3.Add(this.vbox5);
+		this.vpaned3.Add(this.hpaned3);
+		global::Gtk.Paned.PanedChild w6 = ((global::Gtk.Paned.PanedChild)(this.vpaned3[this.hpaned3]));
+		w6.Resize = false;
+		// Container child vpaned3.Gtk.Paned+PanedChild
+		this.GtkScrolledWindow2 = new global::Gtk.ScrolledWindow();
+		this.GtkScrolledWindow2.Name = "GtkScrolledWindow2";
+		this.GtkScrolledWindow2.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow2.Gtk.Container+ContainerChild
+		this.eventsTextview = new global::Gtk.TextView();
+		this.eventsTextview.CanFocus = true;
+		this.eventsTextview.Name = "eventsTextview";
+		this.GtkScrolledWindow2.Add(this.eventsTextview);
+		this.vpaned3.Add(this.GtkScrolledWindow2);
+		this.vbox3.Add(this.vpaned3);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.vpaned3]));
+		w9.Position = 1;
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.statusbar1 = new global::Gtk.Statusbar();
 		this.statusbar1.Name = "statusbar1";
 		this.statusbar1.Spacing = 6;
 		this.vbox3.Add(this.statusbar1);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.statusbar1]));
-		w7.Position = 2;
-		w7.Expand = false;
-		w7.Fill = false;
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.statusbar1]));
+		w10.Position = 2;
+		w10.Expand = false;
+		w10.Fill = false;
 		this.Add(this.vbox3);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
 		}
 		this.DefaultWidth = 400;
-		this.DefaultHeight = 300;
+		this.DefaultHeight = 335;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 	}

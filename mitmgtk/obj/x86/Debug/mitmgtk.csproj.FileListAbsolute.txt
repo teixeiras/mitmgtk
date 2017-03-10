@@ -44,3 +44,10 @@
 /Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/LiteDB.xml
 /Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Newtonsoft.Json.xml
 /Users/teixeiras/mitmgtk/mitmgtk/obj/x86/Debug/mitmgtk.csprojResolveAssemblyReference.cache
+/Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Jint.dll
+/Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.Bot.dll
+/Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.Log.dll
+/Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.Neuro.dll
+/Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.VA.dll
+/Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.WordNet.dll
+/Users/fteixeira/Projects/mitmgtk/mitmgtk/bin/Debug/Syn.Bot.xml
