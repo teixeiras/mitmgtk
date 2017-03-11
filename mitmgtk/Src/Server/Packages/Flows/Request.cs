@@ -16,8 +16,8 @@ namespace Mitmgtk.UpdatesPackage
 
 		public String contentLength { get; set; }
 		public String contentHash { get; set; }
-		public String timestamp_start { get; set; }
-		public String timestamp_end { get; set; }
+		public Double timestamp_start { get; set; }
+		public Double timestamp_end { get; set; }
 		public Boolean is_replay { get; set; }
 
 		public Request()

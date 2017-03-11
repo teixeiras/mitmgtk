@@ -122,6 +122,7 @@
     <Compile Include="Src\Managers\Observers.cs" />
     <Compile Include="Src\Managers\DelayAction.cs" />
     <Compile Include="Src\UI\Store\FlowListStore.cs" />
+    <Compile Include="Src\Server\ContentRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

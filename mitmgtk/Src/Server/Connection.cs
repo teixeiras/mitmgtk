@@ -4,6 +4,7 @@ using System.Net;
 using NLog;
 using System.Web.Script.Serialization;
 using Mitmgtk.UpdatesPackage;
+using System.Collections.Generic;
 //https://www.dropbox.com/s/c5ckquxwiuff2l6/Screenshot%202017-03-09%2014.40.33.png?dl=0
 //https://www.dropbox.com/s/9sfh0v0d6gyyzwh/Screenshot%202017-03-09%2014.41.02.png?dl=0
 //https://www.dropbox.com/s/libh8oy4cykt47j/Screenshot%202017-03-09%2014.41.19.png?dl=0
@@ -20,10 +21,10 @@ namespace Mitmgtk
 		const String EVENTS = "events";
 		const String FLOWS = "flows";
 
-
 		private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
 		static JavaScriptSerializer serializer = new JavaScriptSerializer();
 		static WebSocket socket;
+		public static List<Cookie> cookies;
 		private DelayAction action = null;
 
 		public Connection()
@@ -38,9 +39,11 @@ namespace Mitmgtk
 			req.Method = "GET";
 			WebResponse resp = req.GetResponse();
 			cookieHeader = resp.Headers["Set-cookie"];
+			cookies = new List<Cookie>();
 
 			foreach (Cookie localCookie in CookiesManager.GetHttpCookiesFromHeader(cookieHeader))
 			{
+				cookies.Add(localCookie);
 				WebSocketSharp.Net.Cookie cookie = new WebSocketSharp.Net.Cookie(localCookie.Name, localCookie.Value);
 				socket.SetCookie(cookie);
 			}
@@ -99,9 +102,7 @@ namespace Mitmgtk
 			{
 				this.Notify(false);
 				logger.Error(e.Message);
-				action = new DelayAction(2000, () => {
-					Connect();
-				});
+				action = new DelayAction(2000, Connect);
 			}
 		}
 

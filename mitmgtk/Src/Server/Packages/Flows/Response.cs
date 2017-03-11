@@ -18,9 +18,9 @@ namespace Mitmgtk
 
 		public String contentHash { get; set; }
 
-		public int timestamp_start { get; set; }
+		public Double timestamp_start { get; set; }
 
-		public int timestamp_end { get; set; }
+		public Double timestamp_end { get; set; }
 
 		public Boolean is_replay { get; set; }
 

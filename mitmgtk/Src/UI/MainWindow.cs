@@ -3,9 +3,13 @@ using Gtk;
 using Gdk;
 using Mitmgtk;
 using Mitmgtk.UpdatesPackage;
+using NLog;
 
 public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverImpl, ConnectionObserverImp
 {
+	private static Logger logger = LogManager.GetCurrentClassLogger();
+
+
 	private static StatusIcon trayIcon;
 	private FlowListStore store;
 	private const String WINDOW_NAME = "main";
@@ -48,10 +52,7 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 		PackagesManager.eventsObserver.Attach(this);
 		PackagesManager.flowsObserver.Attach(this);
 
-		store = new FlowListStore();
-		flowsTree.Model = store;
 
-		updateData();
 	}
 
 	void on_dialog_response(object obj, ResponseArgs args)
@@ -139,26 +140,17 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 
 	public void NewEventHasArrived(Package<Events> packageEvent)
 	{
-		String str = "";
-		foreach (Package<Events> eventPackage in PackagesManager.GetEvents())
-		{
-			str += "\n[" + eventPackage.data.level + "]" + eventPackage.data.message;
-		}
-	
-		//eventsTextview.Buffer.Text = str;
+		TextIter mIter = eventsTextview.Buffer.EndIter;
+		String str = "\n[" + packageEvent.data.level + "]" + packageEvent.data.message;;
+		//Crashing... don't know why yet.
+		//eventsTextview.Buffer.Insert(ref mIter, str);
 	}
 
 	public void NewFlowHasArrived(Package<Flows> packageFlows)
 	{
-		updateData();
+		store.Add(packageFlows);
 	}
 
-
-	void updateData()
-	{
-		store.Update();
-
-	}
 
 	void initializeFlowListView()
 	{
@@ -197,11 +189,34 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 
 
 		// Tell the Cell Renderers which items in the model to display
-		pathColumn.AddAttribute(pathNameCell, "text", 0);
-		methodColumn.AddAttribute(methodNameCell, "text", 1);
-		statusColumn.AddAttribute(statusNameCell, "text", 2);
-		sizeColumn.AddAttribute(sizeNameCell, "text", 3);
-		timeColumn.AddAttribute(timeNameCell, "text", 4);
+		pathColumn.AddAttribute(pathNameCell, "text", 1);
+		methodColumn.AddAttribute(methodNameCell, "text", 2);
+		statusColumn.AddAttribute(statusNameCell, "text", 3);
+		sizeColumn.AddAttribute(sizeNameCell, "text", 4);
+		timeColumn.AddAttribute(timeNameCell, "text", 5);
+
+		store = new FlowListStore();
+		flowsTree.Model = store;
+
+		flowsTree.Selection.Changed += (sender, e) =>
+		{
+			logger.Info("SELECTION WAS CHANGED");
+			Gtk.TreeIter selected;
+			if (flowsTree.Selection.GetSelected(out selected))
+			{
+				logger.Info("SELECTED ITEM: {0}", store.GetValue(selected, 0));
+
+				logger.Info(ContentRequest.getContent((String)store.GetValue(selected, 0), 
+				                                      ContentRequest.RequestType.response));
+			}
+		};
+
+		TreeIter iter;
+		if (store.GetIterFirst(out iter))
+			flowsTree.Selection.SelectIter(iter);
+
+
+
 	}
 
 	protected void ExitAction(object sender, EventArgs e)
