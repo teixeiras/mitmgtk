@@ -25,7 +25,7 @@ namespace Mitmgtk
 				WebRequest req = WebRequest.Create(
 					"http://" + Settings.instance().defaultHost + "/flows/" + System.Uri.EscapeDataString(id) + "/" + request + "/content");
 				logger.Error("http://" + Settings.instance().defaultHost + "/flows/" + System.Uri.EscapeDataString(id) + "/" + request + "/content");
-
+				req.
 				req.Method = "GET";
 				WebResponse resp = req.GetResponse();
 
