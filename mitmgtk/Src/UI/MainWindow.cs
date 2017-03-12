@@ -4,11 +4,16 @@ using Gdk;
 using Mitmgtk;
 using Mitmgtk.UpdatesPackage;
 using NLog;
+using System.Text;
+using System.IO;
+using System.Collections.Generic;
 
 public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverImpl, ConnectionObserverImp
 {
 	private static Logger logger = LogManager.GetCurrentClassLogger();
 
+	private const int REQUEST_TAB = 0;
+	private const int RESPONSE_TAB = 1;
 
 	private static StatusIcon trayIcon;
 	private FlowListStore store;
@@ -43,11 +48,14 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 
 		InitializeTray();
 
+		notebook.GetNthPage(REQUEST_TAB).Hide();
+	
+		notebook.GetNthPage(RESPONSE_TAB).Hide();
+
 		connection = new Mitmgtk.Connection();
 		connection.Attach(this);
 		connection.Connect();
 
-		initializeFlowListView();
 
 		PackagesManager.eventsObserver.Attach(this);
 		PackagesManager.flowsObserver.Attach(this);
@@ -135,24 +143,58 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 			trayIcon.Tooltip = "Disconnected";
 		}
 
+		RemoteSettings settings = FechData.Fetch<RemoteSettings>(FechData.SERVICE_SETTINGS);
+		List<Package<Flows>> flows = FechData.Fetch<List<Package<Flows>>>(FechData.SERVICE_FLOWS);
+		if (flows != null)
+		{
+			PackagesManager.flows = flows;
+		}
+		initializeFlowListView(PackagesManager.flows);
+		/*
+		List<Package<Events>> events = FechData.Fetch<List<Package<Events>>>(FechData.SERVICE_EVENTS);
+		if (events != null)
+		{
+			PackagesManager.events = events;
+			String str = "";
+			foreach (Package<Events> package in events)
+			{
+				str += "\n[" + package.data.level + "]" + package.data.message; ;
+			}
+			eventsTextview.Buffer.Text = str;
+		}*/
 
 	}
 
 	public void NewEventHasArrived(Package<Events> packageEvent)
 	{
-		TextIter mIter = eventsTextview.Buffer.EndIter;
-		String str = "\n[" + packageEvent.data.level + "]" + packageEvent.data.message;;
-		//Crashing... don't know why yet.
-		//eventsTextview.Buffer.Insert(ref mIter, str);
+		Application.Invoke(delegate
+		{
+			TextIter mIter = eventsTextview.Buffer.EndIter;
+			String str = "\n[" + packageEvent.data.level + "]" + packageEvent.data.message; ;
+			eventsTextview.Buffer.Insert(ref mIter, str);
+		});
+
+
+	}
+	public void FlowHasBeenUpdated(Package<Flows> packageFlows)
+	{
+		Application.Invoke(delegate
+		{
+			store.Update(packageFlows);
+		});
 	}
 
 	public void NewFlowHasArrived(Package<Flows> packageFlows)
 	{
-		store.Add(packageFlows);
+		Application.Invoke(delegate
+		{
+			store.Add(packageFlows);
+		});
+
 	}
 
 
-	void initializeFlowListView()
+	void initializeFlowListView(List<Package<Flows>> flows)
 	{
 		TreeViewColumn pathColumn = new TreeViewColumn();
 		pathColumn.Title = "Path";
@@ -189,13 +231,13 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 
 
 		// Tell the Cell Renderers which items in the model to display
-		pathColumn.AddAttribute(pathNameCell, "text", 1);
-		methodColumn.AddAttribute(methodNameCell, "text", 2);
-		statusColumn.AddAttribute(statusNameCell, "text", 3);
-		sizeColumn.AddAttribute(sizeNameCell, "text", 4);
-		timeColumn.AddAttribute(timeNameCell, "text", 5);
+		pathColumn.AddAttribute(pathNameCell, "text", 0);
+		methodColumn.AddAttribute(methodNameCell, "text", 1);
+		statusColumn.AddAttribute(statusNameCell, "text", 2);
+		sizeColumn.AddAttribute(sizeNameCell, "text", 3);
+		timeColumn.AddAttribute(timeNameCell, "text", 4);
 
-		store = new FlowListStore();
+		store = new FlowListStore(flows);
 		flowsTree.Model = store;
 
 		flowsTree.Selection.Changed += (sender, e) =>
@@ -204,10 +246,34 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 			Gtk.TreeIter selected;
 			if (flowsTree.Selection.GetSelected(out selected))
 			{
-				logger.Info("SELECTED ITEM: {0}", store.GetValue(selected, 0));
+				logger.Info("SELECTED ITEM: {0}", store.GetValue(selected, FlowListStore.ID_COLUMN));
+				ContentRequest.Content request = ContentRequest.GetContent((String)store.GetValue(selected, FlowListStore.ID_COLUMN),
+														   ContentRequest.RequestType.request);
 
-				logger.Info(ContentRequest.getContent((String)store.GetValue(selected, 0), 
-				                                      ContentRequest.RequestType.response));
+				if (request != null)
+				{
+					string requestString = System.Text.Encoding.UTF8.GetString(request.contentByte);
+					requestTextView.Buffer.Text = requestString;
+					requestTextView.WrapMode = WrapMode.WordChar;
+					notebook.GetNthPage(REQUEST_TAB).Show();
+				}
+				else
+				{
+					notebook.GetNthPage(REQUEST_TAB).Hide();
+				}
+
+
+				ContentRequest.Content response = ContentRequest.GetContent((String)store.GetValue(selected, FlowListStore.ID_COLUMN),
+				                                                            ContentRequest.RequestType.response);
+				if (response != null)
+				{
+					DisplayContent(response);
+					notebook.GetNthPage(RESPONSE_TAB).Show();
+				}
+				else
+				{
+					notebook.GetNthPage(RESPONSE_TAB).Hide();
+				}
 			}
 		};
 
@@ -216,6 +282,30 @@ public partial class MainWindow : Gtk.Window, EventsObserverImpl, FlowsObserverI
 			flowsTree.Selection.SelectIter(iter);
 
 
+
+	}
+
+	protected void DisplayContent(ContentRequest.Content content)
+	{
+		try
+		{
+			logger.Info("Content Size:" + content.contentByte.Length);
+
+			using (var reader = new StreamReader(new MemoryStream(content.contentByte), Encoding.Default))
+			{
+				// read the contents of the file into a string 
+				Encoding utf8 = Encoding.UTF8;
+				byte[] isoBytes = Encoding.Convert(reader.CurrentEncoding, utf8, content.contentByte);
+				string msg = utf8.GetString(isoBytes);
+				string responseString = msg;
+				responseTextView.WrapMode = WrapMode.WordChar;
+				responseTextView.Buffer.Text = responseString;
+			}
+		}
+		catch (Exception e)
+		{
+			logger.Error("Could not be open as text:" + e.Message);
+		}
 
 	}
 

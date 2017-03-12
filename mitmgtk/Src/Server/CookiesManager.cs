@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Net;
+using System.Collections.Generic;
 
 namespace Mitmgtk
 {
 	public static class CookiesManager
 	{
+		public static List<Cookie> cookies;
+
+
 		static Regex rxCookieParts = new Regex(@"(?<name>.*?)\=(?<value>.*?)\;|(?<name>\bsecure\b|\bhttponly\b)", RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
 		static Regex rxRemoveCommaFromDate = new Regex(@"\bexpires\b\=.*?(\;|$)", RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.Multiline);
 		public static Cookie ToCookie(this string rawCookie)

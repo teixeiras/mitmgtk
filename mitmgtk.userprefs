@@ -1,28 +1,25 @@
 ﻿<Properties StartupConfiguration="{21680A28-EAA3-4F4D-BE0D-9E12EAFCE6CB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="mitmgtk/Src/Server/ContentRequest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="mitmgtk/Src/UI/MainWindow.cs">
     <Files>
-      <File FileName="mitmgtk/Src/UI/MainWindow.cs" Line="217" Column="3" />
-      <File FileName="mitmgtk/Src/UI/Store/FlowListStore.cs" Line="47" Column="13" />
+      <File FileName="mitmgtk/Src/UI/Store/FlowListStore.cs" Line="24" Column="3" />
+      <File FileName="mitmgtk/Src/UI/MainWindow.cs" Line="149" Column="20" />
+      <File FileName="mitmgtk/Src/Server/Connection.cs" Line="16" Column="8" />
+      <File FileName="mitmgtk/Src/Server/Packages/Flows/Flows.cs" Line="6" Column="15" />
       <File FileName="mitmgtk/Src/UI/Setup.cs" Line="1" Column="1" />
-      <File FileName="mitmgtk/Src/Managers/PackagesManager.cs" Line="47" Column="34" />
-      <File FileName="mitmgtk/Src/Server/Packages/Flows/Connection.cs" Line="4" Column="15" />
-      <File FileName="mitmgtk/Src/Managers/Observers.cs" Line="28" Column="32" />
-      <File FileName="mitmgtk/Src/Program.cs" Line="8" Column="33" />
-      <File FileName="mitmgtk/Src/Server/Connection.cs" Line="23" Column="36" />
-      <File FileName="mitmgtk/Src/Server/Packages/Flows/Response.cs" Line="21" Column="16" />
-      <File FileName="mitmgtk/Src/Server/Packages/Flows/Request.cs" Line="12" Column="6" />
-      <File FileName="mitmgtk/Src/Server/FechData.cs" Line="1" Column="1" />
-      <File FileName="mitmgtk/Src/Server/ContentRequest.cs" Line="4" Column="11" />
-      <File FileName="mitmgtk/Src/Server/CookiesManager.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Server/CookiesManager.cs" Line="8" Column="36" />
+      <File FileName="mitmgtk/Src/Server/RequestsModels/RemoteSettings.cs" Line="4" Column="2" />
+      <File FileName="mitmgtk/Src/Server/RequestsType/FechData.cs" Line="12" Column="30" />
+      <File FileName="mitmgtk/Src/Server/RequestsType/GenericRequest.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Server/RequestsType/ContentRequest.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Persistence/Settings.cs" Line="1" Column="1" />
+      <File FileName="mitmgtk/Src/Server/Packages/DataPackage.cs" Line="6" Column="32" />
+      <File FileName="mitmgtk/Src/Server/RequestsModels/RemoteFlows.cs" Line="7" Column="4" />
+      <File FileName="mitmgtk/Src/Managers/PackagesManager.cs" Line="16" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/teixeiras/mitmgtk/mitmgtk/Src/Server/Connection.cs" relfile="mitmgtk/Src/Server/Connection.cs" line="99" column="1" />
-      <Breakpoint file="/Users/teixeiras/mitmgtk/mitmgtk/Src/Server/Connection.cs" relfile="mitmgtk/Src/Server/Connection.cs" line="61" column="1" />
-      <Breakpoint file="/Users/teixeiras/mitmgtk/mitmgtk/Src/Server/ContentRequest.cs" relfile="mitmgtk/Src/Server/ContentRequest.cs" line="37" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.mitmgtk PreferredExecutionTarget="MonoDevelop.Default" />

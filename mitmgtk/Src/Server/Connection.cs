@@ -24,7 +24,6 @@ namespace Mitmgtk
 		private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
 		static JavaScriptSerializer serializer = new JavaScriptSerializer();
 		static WebSocket socket;
-		public static List<Cookie> cookies;
 		private DelayAction action = null;
 
 		public Connection()
@@ -39,11 +38,11 @@ namespace Mitmgtk
 			req.Method = "GET";
 			WebResponse resp = req.GetResponse();
 			cookieHeader = resp.Headers["Set-cookie"];
-			cookies = new List<Cookie>();
+			CookiesManager.cookies = new List<Cookie>();
 
 			foreach (Cookie localCookie in CookiesManager.GetHttpCookiesFromHeader(cookieHeader))
 			{
-				cookies.Add(localCookie);
+				CookiesManager.cookies.Add(localCookie);
 				WebSocketSharp.Net.Cookie cookie = new WebSocketSharp.Net.Cookie(localCookie.Name, localCookie.Value);
 				socket.SetCookie(cookie);
 			}

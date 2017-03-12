@@ -109,7 +109,6 @@
     <Compile Include="Src\Server\Connection.cs" />
     <Compile Include="Src\Persistence\BaseClass.cs" />
     <Compile Include="Src\Persistence\Settings.cs" />
-    <Compile Include="Src\Server\FechData.cs" />
     <Compile Include="Src\Server\CookiesManager.cs" />
     <Compile Include="Src\Server\Packages\DataPackage.cs" />
     <Compile Include="Src\Server\Packages\Events.cs" />
@@ -122,7 +121,11 @@
     <Compile Include="Src\Managers\Observers.cs" />
     <Compile Include="Src\Managers\DelayAction.cs" />
     <Compile Include="Src\UI\Store\FlowListStore.cs" />
-    <Compile Include="Src\Server\ContentRequest.cs" />
+    <Compile Include="Src\Server\RequestsModels\RemoteSettings.cs" />
+    <Compile Include="Src\Server\RequestsType\ContentRequest.cs" />
+    <Compile Include="Src\Server\RequestsType\FechData.cs" />
+    <Compile Include="Src\Server\RequestsType\GenericRequest.cs" />
+    <Compile Include="Src\Server\RequestsModels\RemoteFlows.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -134,6 +137,8 @@
     <Folder Include="Src\Server\Packages\Flows\" />
     <Folder Include="Src\Managers\" />
     <Folder Include="Src\UI\Store\" />
+    <Folder Include="Src\Server\RequestsModels\" />
+    <Folder Include="Src\Server\RequestsType\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
